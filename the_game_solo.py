@@ -1,4 +1,5 @@
-# todo: minimize stacks to single ints (no need to save the whole stack)
+# todo: -minimize stacks to single ints (no need to save the whole stack)
+#       -improve the algorithm: focus on using the 10-jumps better
 import random
 
 HANDSIZE = 7
@@ -9,10 +10,10 @@ RUNCOUNT = 1000
 results = ([], [])  # for len(shuffled) and len(hand)
 
 for run in range(RUNCOUNT):
-    shuffled = list(range(1, MAXNUM))
+    shuffled = list(range(2, MAXNUM))
     random.shuffle(shuffled)
 
-    stacks = ([0], [MAXNUM], [0], [MAXNUM])
+    stacks = ([1], [MAXNUM], [1], [MAXNUM])
 
     hand = []
 
@@ -50,7 +51,9 @@ for run in range(RUNCOUNT):
 
 avg_shuffled = sum(results[0]) / len(results[0])
 avg_hand = sum(results[1]) / len(results[1])
+sorted_shuffled, sorted_hand = zip(*sorted(zip(results[0], results[1])))
 
-print("Länge shuffled: %f, Länge hand: %f" % (avg_shuffled, avg_hand))
-
+print("\tShuffled, Hand")
+print("Average: %.3f, %.3f" % (avg_shuffled, avg_hand))
+print("Best game: %d, %d" % (sorted_shuffled[0], sorted_hand[0]))
 
