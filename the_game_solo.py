@@ -1,5 +1,4 @@
 # todo: -minimize stacks to single ints (no need to save the whole stack)
-#       -improve the algorithm: focus on using the 10-jumps better
 import random
 
 HANDSIZE = 7
